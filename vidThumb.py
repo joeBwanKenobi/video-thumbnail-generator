@@ -1,9 +1,8 @@
 #! /usr/bin/env python3
 import ffmpeg, sys, os
 
-cwd = os.getcwd()
-source_dir = cwd + sys.argv[1]
-thumb_dir = cwd + sys.argv[2]
+source_dir = sys.argv[1]
+thumb_dir = sys.argv[2]
 thumb_width = 800 # pixels
 thumb_time = 55 # seconds
 extension = '.png'
