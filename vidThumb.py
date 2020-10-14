@@ -21,8 +21,16 @@ def generate_thumbnail(in_filename, out_filename, time, width):
         print(e.stderr.decode(), file=sys.stderr)
         sys.exit(1)
 
-for vid in os.listdir(source_dir):
-    title = vid.split('.')[0] + extension
+print(os.path.isdir(source_dir), os.path.isfile(source_dir))
+
+if os.path.isdir(source_dir):
+    for vid in os.listdir(source_dir):
+        title = vid.split('.')[0] + extension
+        out_path = thumb_dir + title
+        print("Generating thumbnail: " + out_path)
+        generate_thumbnail(source_dir + vid, out_path, thumb_time, thumb_width)
+elif os.path.isfile(source_dir):
+    title = source_dir.split('/')[-1].split('.')[0] + extension
     out_path = thumb_dir + title
     print("Generating thumbnail: " + out_path)
-    generate_thumbnail(source_dir + vid, out_path, thumb_time, thumb_width)
+    generate_thumbnail(source_dir, out_path, thumb_time, thumb_width)
